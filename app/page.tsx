@@ -4,7 +4,13 @@ export default function HomePage() {
 
 
   return (
-   <div className="island-ocean animated-gradient flex flex-col items-center justify-center min-h-screen relative text-white text-center py-6 px-6 overflow-hidden">
+   <div className="island-ocean animated-gradient flex items-center justify-center min-h-screen relative text-white text-center py-6 px-6 overflow-hidden">
+
+ {/* 🌌 Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0B1D51] to-[#000] animate-gradient"></div>
+
+      {/* ✨ Stars */}
+      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:18px_18px]"></div>
 
   <Stars />
 
@@ -12,7 +18,7 @@ export default function HomePage() {
   <img
     src="/images/island_logo.png"
     alt="Floating Island"
-    className="absolute top-[20%] left-1/2 -translate-x-1/2 w-20 md:w-28 z-10 animate-float"
+    className=" w-20 md:w-28 z-10 animate-float mb-6"
   />
 
   {/* Content */}

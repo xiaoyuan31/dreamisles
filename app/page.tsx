@@ -1,6 +1,5 @@
 import Stars from "./components/Stars";
-import FloatingIsland from "./components/FloatingIsland";
-
+import Link from "next/link";
 export default function HomePage() {
 
 
@@ -26,13 +25,15 @@ export default function HomePage() {
           A place between dreams and reality
         </p>
 
-        <button className="bg-gradient-to-r from-pink-500 to-purple-500 px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition">
-          Begin Journey ✨
+        <Link href="/islands/traveler-night">
+        <button  className="bg-gradient-to-r from-pink-500 to-purple-500 px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition">
+          Start ✨
         </button>
-
+        </Link>
+{/* 
         <button className="border ms-2 border-white/30 px-8 py-3 rounded-full hover:bg-white/10 transition">
-          Learn More
-        </button>
+          Learn
+        </button> */}
     </div>
 
 </div>

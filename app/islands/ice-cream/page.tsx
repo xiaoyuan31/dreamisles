@@ -13,14 +13,14 @@ export default function IceCreamIsland() {
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
       {/* 🍦 Island Image */}
-      <div className="absolute left-1/2 z-10 flex flex-col items-center mt-10">
-        <Image
-          src="/images/island_2.png" // your ice cream island image
-          alt="Ice Cream Island"
-          width={100}
-          height={100}
-          className="animate-float"
-        />
+       <div className="absolute top-20 left-1/2 z-10 flex flex-col items-center">
+              <Image
+                src="/images/island-2.png"
+                alt="Traveler Island"
+                width={200}
+                height={35}
+                className="animate-float"
+              />
 
         {/* Glow */}
         <div className="w-48 h-12 bg-pink-400/30 blur-2xl rounded-full -mt-8"></div>

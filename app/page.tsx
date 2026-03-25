@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
    <div className="island-ocean animated-gradient flex items-center justify-center min-h-screen relative text-white text-center py-6 px-6 overflow-hidden">
 
- {/* 🌌 Background */}
+      {/* 🌌 Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0B1D51] to-[#000] animate-gradient"></div>
 
       {/* ✨ Stars */}

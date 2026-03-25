@@ -19,7 +19,7 @@ export default function TravelerNightIsland() {
       {/* 🏝️ Island */}
       <div className="absolute top-20 left-1/2 z-10 flex flex-col items-center">
         <Image
-          src="/images/island_one.png"
+          src="/images/island-1.png"
           alt="Traveler Island"
           width={200}
           height={35}

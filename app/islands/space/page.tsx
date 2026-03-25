@@ -16,14 +16,14 @@ export default function SpaceIsland() {
       <div className="absolute top-20 w-72 h-72 bg-purple-500/20 blur-3xl rounded-full"></div>
 
       {/* 🏝️ Island */}
-      <div className="absolute top-10 left-1/2 z-10 flex flex-col items-center mt-10">
-        <Image
-          src="/images/island-4.png" // placeholder (you can design later)
-          alt="Space Island"
-          width={130}
-          height={100}
-          className="animate-float"
-        />
+      <div className="absolute top-20 left-1/2 z-10 flex flex-col items-center">
+             <Image
+               src="/images/island-4.png"
+               alt="Traveler Island"
+               width={200}
+               height={35}
+               className="animate-float"
+             />
 
         <div className="w-48 h-12 bg-purple-400/20 blur-2xl rounded-full -mt-8"></div>
       </div>

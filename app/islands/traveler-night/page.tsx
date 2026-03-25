@@ -2,7 +2,7 @@
 import Stars from "../../components/Stars";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompass } from "@fortawesome/free-solid-svg-icons";
+import { faBed, faCompass } from "@fortawesome/free-solid-svg-icons";
 
 export default function TravelerNight() {
   return (
@@ -46,6 +46,14 @@ export default function TravelerNight() {
         >
           <FontAwesomeIcon icon={faCompass} />
           Back to Islands
+        </Link>
+
+        <Link
+          href="/islands/start_dream"
+          className="inline-flex ms-2 items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 px-6 py-3 rounded-full hover:scale-105 transition"
+        >
+          <FontAwesomeIcon icon={faBed} />
+          Sleep to Dream
         </Link>
       </div>
 

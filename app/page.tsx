@@ -2,9 +2,11 @@ import Stars from "./components/Stars";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass } from "@fortawesome/free-solid-svg-icons";
-
+import { islands, type Island } from "@/app/data/islands";
 
 export default function HomePage() {
+
+
   return (
    <div className="island-ocean animated-gradient flex items-center justify-center min-h-screen relative text-white text-center py-6 px-6 overflow-hidden">
 
@@ -37,14 +39,17 @@ export default function HomePage() {
         </p>
 
         <Link href="/islands">
-          <button className="bg-gradient-to-r from-pink-500 to-purple-500 w-fit mx-auto px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition flex items-center gap-2">
+          <button className="bg-gradient-to-r mb-6 from-pink-500 to-purple-500 w-fit mx-auto px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition flex items-center gap-2">
             Explore the isles
           </button>
         </Link>
-{/* 
-        <button className="border ms-2 border-white/30 px-8 py-3 rounded-full hover:bg-white/10 transition">
-          Learn
-        </button> */}
+
+
+        <Link href="/islands/memory">
+          <button className="bg-gradient-to-r from-pink-500 to-purple-500 w-fit mx-auto px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition flex items-center gap-2">
+            📖 Memories
+          </button>
+        </Link>
     </div>
 
 </div>

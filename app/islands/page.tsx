@@ -1,55 +1,10 @@
-import IslandCard, { Island } from "../components/IslandCard";
+
+import IslandCard from "../components/IslandCard";
 import Portal from "../components/Portal";
 import Stars from "../components/Stars";
+import { islands, type Island, type IslandFeature } from "@/app/data/islands";
 
 export default function IslandList() {
-
-  const islands: Island[] = [
-    {
-      id: "traveler-night",
-      title: "Traveler Night",
-      description: "A quiet island where travelers rest under the stars.",
-      image: "/images/island-1.png",
-      href: "/islands/traveler-night",
-      features: [
-        { type: "star", label: "Collect Star" },
-       { type: "effect", label: "Twinkling Stars" },
-      ],
-    },
-    {
-      id: "ice-cream",
-      title: "Ice Cream Island",
-      description: "A sweet world filled with colorful flavors.",
-      image: "/images/island-2.png",
-      href: "/islands/ice-cream",
-      features: [
-        { type: "animation", label: "Sprinkles Fall" },
-        { type: "info", label: "Fun Facts" },
-      ],
-    },
-    {
-      id: "magical-forest",
-      title: "Magical Forest",
-      description: "A mysterious forest where dreams come alive.",
-      image: "/images/island-3.png",
-      href: "/islands/magical-forest",
-      features: [
-        { type: "star", label: "Collect Star" },
-        { type: "effect", label: "Fireflies" },
-      ],
-    },
-    {
-      id: "space",
-      title: "Space",
-      description: "A mysterious space where planets exploration occur.",
-      image: "/images/island-4.png",
-      href: "/islands/space",
-      features: [
-        { type: "star", label: "Collect Star" },
-        { type: "effect", label: "Cosmic Dust" },
-      ],
-    },
-  ];
 
   return (
     <div className="min-h-screen relative px-6 py-20 text-white overflow-hidden">
@@ -67,10 +22,13 @@ export default function IslandList() {
         ))}
       </div>
 
+
+
       {/* <Portal href="/islands/traveler-night" label="🌙" top="20%" left="15%" />
       <Portal href="/islands/ice-cream" label="🍦" top="40%" left="50%" />
       <Portal href="/islands/magical-forest" label="🌲" top="65%" left="30%" />
       <Portal href="/islands/space" label="🚀" top="30%" left="75%" /> */}
+      
     </div>
   );
 }

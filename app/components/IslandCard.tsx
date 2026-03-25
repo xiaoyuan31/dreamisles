@@ -3,23 +3,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-
-export interface IslandFeature {
-  type: "star" | "effect" | "animation" | "info" | "button";
-  label?: string;
-  icon?: string;
-  action?: () => void;
-}
-
-export interface Island {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  href: string;
-  icon?: string;
-  features?: IslandFeature[];
-}
+import { islands, type Island, type IslandFeature } from "@/app/data/islands";
 
 export default function IslandCard(island: Island) {
   const [stars, setStars] = useState(0);
@@ -43,7 +27,7 @@ export default function IslandCard(island: Island) {
         style={{ animationDelay: `${Math.random() * 2}s` }}
         src={island.image}
         alt={island.title}
-        className="absolute animate-float -top-19 left-1/2 -translate-x-1/2 w-24 md:w-28 z-20 drop-shadow-[0_0_25px_rgba(255,255,255,0.35)]"
+        className="absolute -top-19 animate-float translate-x-1/2 w-24 md:w-28 z-20 drop-shadow-[0_0_25px_rgba(255,255,255,0.35)]"
       />
 
       {island.id === "traveler-night" && <div className="halo"></div>}
@@ -145,16 +129,7 @@ export default function IslandCard(island: Island) {
                     {feature.label || "Info"}
                   </button>
                 );
-              case "button":
-                return (
-                  <button
-                    key={idx}
-                    onClick={feature.action}
-                    className="px-3 py-1 bg-pink-400/20 rounded-full hover:bg-pink-400/40 transition"
-                  >
-                    {feature.label || "Action"}
-                  </button>
-                );
+              
               default:
                 return null;
             }

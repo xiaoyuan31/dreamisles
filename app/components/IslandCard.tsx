@@ -37,45 +37,70 @@ export default function IslandCard(island: Island) {
   };
 
   return (
-    <div className="relative bg-white/10 mb-10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 pt-16 pb-6 overflow-visible text-center mx-5">
-
+    <div className="relative hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] bg-white/10 mb-10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 pt-16 pb-6 overflow-visible text-center mx-5 w-full max-w-xs">
       {/* Floating Island Image (kept original style) */}
       <img
+        style={{ animationDelay: `${Math.random() * 2}s` }}
         src={island.image}
         alt={island.title}
-        className="absolute -top-19 left-1/2 -translate-x-1/2 w-24 md:w-28 z-20 drop-shadow-[0_0_25px_rgba(255,255,255,0.35)]"
+        className="absolute animate-float -top-19 left-1/2 -translate-x-1/2 w-24 md:w-28 z-20 drop-shadow-[0_0_25px_rgba(255,255,255,0.35)]"
       />
+
+      {island.id === "traveler-night" && <div className="halo"></div>}
+
+      {island.id === "traveler-night" && (
+        <>
+          <div className="twinkle" style={{ top: "10%", left: "20%" }}></div>
+          <div className="twinkle" style={{ top: "30%", left: "70%" }}></div>
+          <div className="twinkle" style={{ top: "60%", left: "40%" }}></div>
+          <div className="twinkle" style={{ top: "80%", left: "80%" }}></div>
+        </>
+      )}
 
       {/* Firefly / Magical Effect */}
-     {island.features?.some(f => f.type === "effect") && (
-  <>
-    <div className="firefly" style={{ top: "5%", left: "15%", animationDelay: "0s" }}></div>
-    <div className="firefly" style={{ top: "30%", left: "80%", animationDelay: "1s" }}></div>
-    <div className="firefly" style={{ top: "70%", left: "20%", animationDelay: "2s" }}></div>
-    <div className="firefly" style={{ top: "60%", left: "70%", animationDelay: "1.5s" }}></div>
-  </>
-)}
+      {island.features?.some((f) => f.type === "effect") && (
+        <>
+          <div
+            className="firefly"
+            style={{ top: "5%", left: "15%", animationDelay: "0s" }}
+          ></div>
+          <div
+            className="firefly"
+            style={{ top: "30%", left: "80%", animationDelay: "1s" }}
+          ></div>
+          <div
+            className="firefly"
+            style={{ top: "70%", left: "20%", animationDelay: "2s" }}
+          ></div>
+          <div
+            className="firefly"
+            style={{ top: "60%", left: "70%", animationDelay: "1.5s" }}
+          ></div>
+        </>
+      )}
 
-
-{showSparkles && (
-  <div className="absolute inset-0 pointer-events-none z-30">
-    {[...Array(12)].map((_, i) => (
-      <div
-        key={i}
-        className="sparkle"
-        style={{
-          left: `${Math.random() * 100}%`,
-          animationDelay: `${Math.random()}s`,
-        }}
-      />
-    ))}
-  </div>
-)}
+      {showSparkles && (
+        <div className="absolute inset-0 pointer-events-none z-30">
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={i}
+              className="sparkle"
+              style={{
+                background: ["#ff69b4", "#ffd700", "#87cefa", "#fff"][i % 4],
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random()}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Card Content */}
       <div className="mt-16 px-4">
         <h2 className="text-xl font-bold mb-2 text-white">{island.title}</h2>
-        <p className="text-sm opacity-80 mb-4 text-white">{island.description}</p>
+        <p className="text-sm opacity-80 mb-4 text-white">
+          {island.description}
+        </p>
 
         {/* Island Features */}
         <div className="flex flex-wrap justify-center gap-2 mb-4">
@@ -88,7 +113,10 @@ export default function IslandCard(island: Island) {
                     onClick={collectStar}
                     className="flex items-center gap-1 bg-yellow-400/20 px-3 py-1 rounded-full hover:bg-yellow-400/40 transition"
                   >
-                    <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      className="text-yellow-300"
+                    />
                     {stars} {feature.label ? `(${feature.label})` : ""}
                   </button>
                 );
@@ -97,19 +125,21 @@ export default function IslandCard(island: Island) {
                   <button
                     key={idx}
                     onClick={() => {
-                        setShowSparkles(true);
-                        setTimeout(() => setShowSparkles(false), 2000); // auto stop
+                      setShowSparkles(true);
+                      setTimeout(() => setShowSparkles(false), 2000); // auto stop
                     }}
                     className="px-3 py-1 bg-purple-400/20 rounded-full hover:bg-purple-400/40 transition"
-                    >
+                  >
                     {feature.label || "Play Animation"}
-                    </button>
+                  </button>
                 );
               case "info":
                 return (
                   <button
                     key={idx}
-                    onClick={() => alert(`Fun fact: This island is magical! 🌟`)}
+                    onClick={() =>
+                      alert(`Fun fact: This island is magical! 🌟`)
+                    }
                     className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition"
                   >
                     {feature.label || "Info"}
@@ -140,8 +170,6 @@ export default function IslandCard(island: Island) {
           Explore
         </Link>
       </div>
-
-     
     </div>
   );
 }

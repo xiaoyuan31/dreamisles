@@ -1,67 +1,96 @@
 "use client";
-
-import Image from "next/image";
+import Stars from "../../components/Stars";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompass } from "@fortawesome/free-solid-svg-icons";
 
-export default function TravelerNightIsland() {
+export default function TravelerNight() {
   return (
-    <div className="min-h-screen relative flex flex-col items-center justify-center text-white overflow-hidden px-6">
+    <div className="relative min-h-screen flex flex-col items-center justify-center text-white overflow-hidden px-6">
 
-      {/* 🌌 Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D51] via-[#1a2a6c] to-black animate-gradient"></div>
+      {/* 🌌 Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D51] via-[#1a2a6c] to-black"></div>
 
-      {/* ✨ Stars */}
-      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+      {/* ✨ Stars Background */}
+      <Stars />
 
       {/* 🌙 Moon Glow */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-blue-300/20 rounded-full blur-3xl"></div>
+      <div className="moon"></div>
 
-      {/* 🏝️ Island */}
-      <div className="absolute top-20 left-1/2 z-10 flex flex-col items-center">
-        <Image
-          src="/images/island-1.png"
-          alt="Traveler Island"
-          width={200}
-          height={35}
-          className="animate-float"
-        />
+      {/* 🏝 Floating Island */}
+      <img
+        src="/images/island-1.png"
+        alt="Traveler Night Island"
+        className="absolute left-1/2 top-10 z-20 w-40 md:w-56 animate-float drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+      />
 
-        {/* Glow under island */}
-        <div className="w-40 h-10 bg-pink-400/20 blur-2xl rounded-full -mt-6"></div>
-      </div>
+      {/* ✨ Floating Small Stars */}
+      <div className="twinkle" style={{ top: "20%", left: "30%" }}></div>
+      <div className="twinkle" style={{ top: "40%", left: "70%" }}></div>
+      <div className="twinkle" style={{ top: "70%", left: "20%" }}></div>
+      <div className="twinkle" style={{ top: "60%", left: "80%" }}></div>
 
-      {/* 📝 Text */}
-      <div className="z-20 text-center mt-10 max-w-xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Traveler’s Rest
+      {/* 📝 Content */}
+      <div className="relative z-30 text-center mt-10 max-w-xl">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+          Traveler Night
         </h1>
 
-        <p className="opacity-80 italic mb-6">
-          You’ve come far… stay for a while.
+        <p className="text-lg opacity-80 italic mb-6">
+          A quiet island where travelers rest under the endless stars...
         </p>
 
-        <p className="text-sm opacity-70">
-          Choose your next destination when you're ready.
-        </p>
+        <Link
+          href="/islands"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 px-6 py-3 rounded-full hover:scale-105 transition"
+        >
+          <FontAwesomeIcon icon={faCompass} />
+          Back to Islands
+        </Link>
       </div>
 
-      {/* 🧭 Island Links */}
-      <div className="z-20 mt-10 flex gap-6 flex-wrap justify-center">
-        <Link href="/islands/ice-cream">
-          <div className="px-5 py-2 border border-white/30 rounded-full hover:bg-white/10 transition">
-            🍦 Ice Cream Island
-          </div>
-        </Link>
+      {/* 🌙 CSS */}
+      <style jsx>{`
+        .moon {
+          position: absolute;
+          top: 10%;
+          right: 15%;
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #fff, rgba(255,255,255,0.2));
+          filter: blur(8px);
+          opacity: 0.8;
+          animation: pulse 4s infinite;
+        }
 
-        <Link href="/islands/space">
-          <div className="px-5 py-2 border border-white/30 rounded-full hover:bg-white/10 transition">
-            🌌 Space Island
-          </div>
-        </Link>
+        .twinkle {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: white;
+          box-shadow: 0 0 8px white, 0 0 16px white;
+          animation: twinkle 2s infinite ease-in-out;
+          z-index: 10;
+        }
 
-      
-      </div>
+        @keyframes twinkle {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.5);
+          }
+        }
 
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); opacity: 0.6; }
+          50% { transform: scale(1.1); opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 }

@@ -1,86 +1,129 @@
- "use client";
-
-import Image from "next/image";
+"use client";
+import Stars from "../../components/Stars";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompass } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function IceCreamIsland() {
+  const [sprinkles, setSprinkles] = useState(false);
+
+  const triggerSprinkles = () => {
+    setSprinkles(true);
+    setTimeout(() => setSprinkles(false), 2000);
+  };
+
   return (
-    <div className="min-h-screen relative flex flex-col items-center text-white overflow-hidden px-6 py-10">
+    <div className="relative min-h-screen flex flex-col items-center justify-center text-white overflow-hidden px-6">
 
-      {/* 🌌 Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1a2a6c] via-[#3a0ca3] to-[#000] animate-gradient"></div>
+      {/* 🌈 Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-pink-400 via-purple-300 to-blue-300"></div>
 
-      {/* ✨ Stars */}
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+      {/* ✨ Stars (lighter for fun vibe) */}
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:25px_25px]"></div>
 
-      {/* 🍦 Island Image */}
-       <div className="absolute top-20 left-1/2 z-10 flex flex-col items-center">
-              <Image
-                src="/images/island-2.png"
-                alt="Traveler Island"
-                width={200}
-                height={35}
-                className="animate-float"
-              />
+      {/* 🍦 Floating Island */}
+      <img
+        src="/images/island-2.png"
+        alt="Ice Cream Island"
+        className="relative z-20 w-40 md:w-56 animate-float drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+      />
 
-        {/* Glow */}
-        <div className="w-48 h-12 bg-pink-400/30 blur-2xl rounded-full -mt-8"></div>
-      </div>
+      {/* 🍬 Sprinkles Animation */}
+      {sprinkles && (
+        <div className="absolute inset-0 pointer-events-none z-30">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="sprinkle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                background:
+                  ["#ff69b4", "#ffd700", "#87cefa", "#fff"][i % 4],
+                animationDelay: `${Math.random()}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* 📝 Title */}
-      <div className="z-20 text-center mt-40 max-w-2xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      {/* ✨ Floating Candy Dots */}
+      <div className="bubble" style={{ top: "20%", left: "20%" }}></div>
+      <div className="bubble" style={{ top: "30%", left: "70%" }}></div>
+      <div className="bubble" style={{ top: "70%", left: "30%" }}></div>
+      <div className="bubble" style={{ top: "60%", left: "80%" }}></div>
+
+      {/* 📝 Content */}
+      <div className="relative z-30 text-center mt-10 max-w-xl">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
           Ice Cream Island
         </h1>
 
-        <p className="italic opacity-80 mb-6">
-          A world of sweetness and imagination 🍦
+        <p className="text-lg opacity-90 italic mb-6">
+          A sweet world filled with colorful dreams and endless flavors 🍭
         </p>
 
-        <p className="text-sm md:text-base opacity-70">
-          Welcome to Ice Cream Island, where every flavor tells a story.
-          From classic vanilla to magical creations, this island is a
-          celebration of joy, creativity, and sweetness.
-        </p>
-      </div>
-
-      {/* 🍨 Flavors Section */}
-      <div className="z-20 mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl w-full">
-
-        {/* Flavor Card */}
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-center hover:scale-105 transition">
-          <h2 className="text-xl font-semibold mb-2">🍫 Chocolate</h2>
-          <p className="text-sm opacity-70">
-            Rich, deep, and comforting. A timeless favorite.
-          </p>
-        </div>
-
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-center hover:scale-105 transition">
-          <h2 className="text-xl font-semibold mb-2">🍦 Vanilla</h2>
-          <p className="text-sm opacity-70">
-            Simple, elegant, and endlessly versatile.
-          </p>
-        </div>
-
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-center hover:scale-105 transition">
-          <h2 className="text-xl font-semibold mb-2">🍓 Strawberry</h2>
-          <p className="text-sm opacity-70">
-            Sweet, fruity, and full of summer vibes.
-          </p>
-        </div>
-
-      </div>
-
-      {/* 🎮 Future Interaction */}
-      <div className="z-20 mt-20 text-center">
-        <p className="opacity-60 text-sm mb-4">
-          More experiences coming soon...
-        </p>
-
-        <button className="px-6 py-2 border border-white/30 rounded-full hover:bg-white/10 transition">
-          Build Your Own Ice Cream (soon)
+        {/* 🍬 Action Button */}
+        <button
+          onClick={triggerSprinkles}
+          className="mb-4 bg-white/20 px-6 py-2 rounded-full hover:bg-white/30 transition"
+        >
+          Sprinkle Magic ✨
         </button>
+
+        <br />
+
+        <Link
+          href="/islands"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 px-6 py-3 rounded-full hover:scale-105 transition"
+        >
+          <FontAwesomeIcon icon={faCompass} />
+          Back to Islands
+        </Link>
       </div>
 
+      {/* 🍦 CSS */}
+      <style jsx>{`
+        .sprinkle {
+          position: absolute;
+          top: -10px;
+          width: 6px;
+          height: 10px;
+          border-radius: 2px;
+          animation: fall 2s linear forwards;
+        }
+
+        @keyframes fall {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(300px) rotate(180deg);
+            opacity: 0;
+          }
+        }
+
+        .bubble {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.6);
+          animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+            opacity: 0.6;
+          }
+          50% {
+            transform: translateY(-15px);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 }

@@ -12,7 +12,7 @@ export default function IslandList() {
       href: "/islands/traveler-night",
       features: [
         { type: "star", label: "Collect Star" },
-        { type: "effect", label: "Twinkling Stars" },
+       { type: "effect", label: "Twinkling Stars" },
       ],
     },
     {
@@ -60,7 +60,7 @@ export default function IslandList() {
       <div className="absolute inset-0 opacity-30 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
       {/* Island Grid */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start justify-center">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 my-11 place-items-center">
         {islands.map((island) => (
           <IslandCard key={island.id} {...island} />
         ))}

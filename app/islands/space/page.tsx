@@ -1,80 +1,119 @@
 "use client";
-
-import Image from "next/image";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompass } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function SpaceIsland() {
+  const [particles, setParticles] = useState(false);
+
+  const triggerParticles = () => {
+    setParticles(true);
+    setTimeout(() => setParticles(false), 2500);
+  };
+
   return (
-    <div className="min-h-screen relative flex flex-col items-center text-white overflow-hidden px-6 py-10">
+    <div className="relative min-h-screen flex flex-col items-center justify-center text-white overflow-hidden px-6">
 
       {/* 🌌 Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0B1D51] to-[#000] animate-gradient"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0d0d2b] to-[#1a1a40]"></div>
 
-      {/* ✨ Stars */}
-      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:18px_18px]"></div>
+      {/* ✨ Star Dust */}
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:15px_15px]"></div>
 
-      {/* 🌠 Glow Nebula */}
-      <div className="absolute top-20 w-72 h-72 bg-purple-500/20 blur-3xl rounded-full"></div>
+      {/* 🌌 Floating Island */}
+      <img
+        src="/images/island-4.png"
+        alt="Space Island"
+        className="absolute left-1/2 top-[10%] z-20 w-44 md:w-60 animate-float drop-shadow-[0_0_30px_rgba(255,255,255,0.35)]"
+      />
 
-      {/* 🏝️ Island */}
-      <div className="absolute top-20 left-1/2 z-10 flex flex-col items-center">
-             <Image
-               src="/images/island-4.png"
-               alt="Traveler Island"
-               width={200}
-               height={35}
-               className="animate-float"
-             />
+      {/* 🌠 Planets & Particles */}
+      {particles && (
+        <div className="absolute inset-0 pointer-events-none z-30">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="particle"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${2 + Math.random() * 6}px`,
+                height: `${2 + Math.random() * 6}px`,
+                animationDelay: `${Math.random()}s`,
+                background: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
-        <div className="w-48 h-12 bg-purple-400/20 blur-2xl rounded-full -mt-8"></div>
-      </div>
-
-      {/* 📝 Title */}
-      <div className="z-20 text-center mt-40 max-w-2xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      {/* 📝 Content */}
+      <div className="relative z-30 text-center mt-10 max-w-xl">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
           Space Island
         </h1>
 
-        <p className="italic opacity-80 mb-6">
-          Beyond the sky lies endless possibility 🌌
+        <p className="text-lg opacity-80 italic mb-6">
+          Explore a mysterious space where planets drift and stars shine endlessly...
         </p>
 
-        <p className="text-sm md:text-base opacity-70">
-          Welcome to Space Island, where curiosity meets the infinite.
-          Explore the mysteries of stars, planets, and the universe itself.
-        </p>
+        {/* 🌟 Trigger Particles */}
+        <button
+          onClick={triggerParticles}
+          className="mb-4 bg-blue-400/20 px-6 py-2 rounded-full hover:bg-blue-400/40 transition"
+        >
+          Cosmic Burst ✨
+        </button>
+
+        <br />
+
+        <Link
+          href="/islands"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-3 rounded-full hover:scale-105 transition"
+        >
+          <FontAwesomeIcon icon={faCompass} />
+          Back to Islands
+        </Link>
       </div>
 
-      {/* 🌍 Sections */}
-      <div className="z-20 mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl w-full">
+      {/* 🌌 CSS */}
+      <style jsx>{`
+        .particle {
+          position: absolute;
+          border-radius: 50%;
+          animation: drift 3s linear forwards;
+        }
 
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-center hover:scale-105 transition">
-          <h2 className="text-xl font-semibold mb-2">🌍 Planets</h2>
-          <p className="text-sm opacity-70">
-            Discover worlds beyond Earth, each with its own story.
-          </p>
-        </div>
+        @keyframes drift {
+          0% {
+            transform: translateY(0) scale(1);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateY(-200px) scale(0.5);
+            opacity: 0;
+          }
+        }
 
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-center hover:scale-105 transition">
-          <h2 className="text-xl font-semibold mb-2">⭐ Stars</h2>
-          <p className="text-sm opacity-70">
-            Learn about the glowing giants lighting the universe.
-          </p>
-        </div>
+        .halo {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 200px;
+          height: 200px;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+          animation: pulse 4s infinite;
+          z-index: 10;
+        }
 
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-center hover:scale-105 transition">
-          <h2 className="text-xl font-semibold mb-2">🚀 Exploration</h2>
-          <p className="text-sm opacity-70">
-            Humanity’s journey into the unknown.
-          </p>
-        </div>
-
-      </div>
-
-      {/* 🌠 Footer hint */}
-      <div className="z-20 mt-20 text-center opacity-60 text-sm">
-        The universe is waiting...
-      </div>
-
+        @keyframes pulse {
+          0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+          50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+      `}</style>
     </div>
   );
 }

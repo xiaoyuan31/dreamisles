@@ -1,8 +1,10 @@
 import Stars from "./components/Stars";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompass } from "@fortawesome/free-solid-svg-icons";
+
+
 export default function HomePage() {
-
-
   return (
    <div className="island-ocean animated-gradient flex items-center justify-center min-h-screen relative text-white text-center py-6 px-6 overflow-hidden">
 
@@ -27,14 +29,17 @@ export default function HomePage() {
         DreamIsles
       </h1>
 
-        <p className="text-lg md:text-xl mb-6 opacity-80 italic">
+       <p className="text-lg md:text-xl mb-6 opacity-80 italic card flex items-center justify-center gap-2">
           A place between dreams and reality
+          <span className="inline-block ml-2 animate-pulse">
+            <FontAwesomeIcon icon={faCompass} className="text-pink-300 text-sm" />
+          </span>
         </p>
 
-        <Link href="/islands/traveler-night">
-        <button  className="bg-gradient-to-r from-pink-500 to-purple-500 px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition">
-          Start ✨
-        </button>
+        <Link href="/islands">
+          <button className="bg-gradient-to-r from-pink-500 to-purple-500 w-fit mx-auto px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition flex items-center gap-2">
+            Explore the isles
+          </button>
         </Link>
 {/* 
         <button className="border ms-2 border-white/30 px-8 py-3 rounded-full hover:bg-white/10 transition">

@@ -1,10 +1,9 @@
 "use client";
-
 import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="w-full primary text-white shadow-md px-6 py-4 flex justify-between items-center">
+    <nav className="w-full bg-secondary text-white shadow-md px-6 py-4 flex justify-between items-center">
   <h1 className="text-xl font-bold">Dreamisles by Xiao Yuan Lv</h1>
 
   <div className="space-x-6">

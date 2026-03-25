@@ -13,7 +13,7 @@ export default function IceCreamIsland() {
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
       {/* 🍦 Island Image */}
-      <div className="relative z-10 flex flex-col items-center mt-10">
+      <div className="absolute left-1/2 z-10 flex flex-col items-center mt-10">
         <Image
           src="/images/island_2.png" // your ice cream island image
           alt="Ice Cream Island"
@@ -27,7 +27,7 @@ export default function IceCreamIsland() {
       </div>
 
       {/* 📝 Title */}
-      <div className="z-20 text-center mt-10 max-w-2xl">
+      <div className="z-20 text-center mt-40 max-w-2xl">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Ice Cream Island
         </h1>

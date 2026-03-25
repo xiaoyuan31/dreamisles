@@ -53,7 +53,7 @@ export default function TravelerNightIsland() {
           </div>
         </Link>
 
-        <Link href="/islands/book-nature">
+        <Link href="/islands/space">
           <div className="px-5 py-2 border border-white/30 rounded-full hover:bg-white/10 transition">
             🌌 Space Island
           </div>

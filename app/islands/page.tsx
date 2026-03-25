@@ -1,4 +1,5 @@
 import IslandCard, { Island } from "../components/IslandCard";
+import Portal from "../components/Portal";
 import Stars from "../components/Stars";
 
 export default function IslandList() {
@@ -65,6 +66,11 @@ export default function IslandList() {
           <IslandCard key={island.id} {...island} />
         ))}
       </div>
+
+      <Portal href="/islands/traveler-night" label="🌙" top="20%" left="15%" />
+      <Portal href="/islands/ice-cream" label="🍦" top="40%" left="50%" />
+      <Portal href="/islands/magical-forest" label="🌲" top="65%" left="30%" />
+      <Portal href="/islands/space" label="🚀" top="30%" left="75%" />
     </div>
   );
 }

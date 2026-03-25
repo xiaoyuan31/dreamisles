@@ -67,10 +67,10 @@ export default function IslandList() {
         ))}
       </div>
 
-      <Portal href="/islands/traveler-night" label="🌙" top="20%" left="15%" />
+      {/* <Portal href="/islands/traveler-night" label="🌙" top="20%" left="15%" />
       <Portal href="/islands/ice-cream" label="🍦" top="40%" left="50%" />
       <Portal href="/islands/magical-forest" label="🌲" top="65%" left="30%" />
-      <Portal href="/islands/space" label="🚀" top="30%" left="75%" />
+      <Portal href="/islands/space" label="🚀" top="30%" left="75%" /> */}
     </div>
   );
 }

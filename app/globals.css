@@ -179,3 +179,10 @@
   background: pink;
   animation: fall 2s linear forwards;
 }
+
+
+@keyframes floaty {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+

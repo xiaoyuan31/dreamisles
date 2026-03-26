@@ -2,9 +2,12 @@
 import Stars from "../../components/Stars";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBed, faCompass } from "@fortawesome/free-solid-svg-icons";
+import { faBed, faBook, faCompass } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function TravelerNight() {
+  const [fire, setFire] = useState(false);
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center text-white overflow-hidden px-6">
 
@@ -40,6 +43,18 @@ export default function TravelerNight() {
           A quiet island where travelers rest under the endless stars...
         </p>
 
+      <Link href="/islands/dream_core">
+        <div className="absolute bottom-10 right-10 z-20 w-20 h-20 rounded-full bg-purple-500 blur-2xl opacity-60 animate-pulse hover:scale-110 transition cursor-pointer"></div>
+      </Link>
+        <div
+          onClick={() => setFire(!fire)}
+          className={`absolute bottom-24 z-20 cursor-pointer transition-all duration-500 ${
+            fire ? "scale-125 brightness-125" : "opacity-80"
+          }`}
+        >
+          <div className="text-4xl">🔥</div>
+        </div>
+
         <Link
           href="/islands"
           className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 px-6 py-3 rounded-full hover:scale-105 transition"
@@ -54,6 +69,14 @@ export default function TravelerNight() {
         >
           <FontAwesomeIcon icon={faBed} />
           Sleep to Dream
+        </Link>
+
+         <Link
+          href="/islands/diary"
+          className="inline-flex ms-2 mt-5 items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 px-6 py-3 rounded-full hover:scale-105 transition"
+        >
+          <FontAwesomeIcon icon={faBook} />
+          Write Diary before sleep
         </Link>
       </div>
 

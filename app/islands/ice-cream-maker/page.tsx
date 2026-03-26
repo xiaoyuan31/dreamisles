@@ -1,20 +1,33 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass } from "@fortawesome/free-solid-svg-icons";
-import Stars from "@/app/components/Stars";
+import { DiaryEntry } from "@/app/data/diaryentries";
 
+// Flavors & toppings
 const flavors = ["Vanilla", "Strawberry", "Chocolate", "Mint", "Blueberry", "Caramel"];
 const toppings = ["Sprinkles", "Cherry", "Chocolate Chips", "Whipped Cream"];
 
+
 export default function IceCreamBuilder() {
-  const [cone, setCone] = useState("Waffle");
   const [scoops, setScoops] = useState<string[]>([]);
   const [topping, setTopping] = useState("");
+  const [entries, setEntries] = useState<DiaryEntry[]>([]);
+
+  // 🌱 Load diary entries
+  useEffect(() => {
+    const saved = localStorage.getItem("diaryEntries");
+    if (saved) setEntries(JSON.parse(saved));
+  }, []);
+
+  // 💾 Save diary entries
+  useEffect(() => {
+    localStorage.setItem("diaryEntries", JSON.stringify(entries));
+  }, [entries]);
 
   const addScoop = (flavor: string) => {
-    if (scoops.length >= 5) return; // max 5 scoops
+    if (scoops.length >= 5) return;
     setScoops([...scoops, flavor]);
   };
 
@@ -23,12 +36,25 @@ export default function IceCreamBuilder() {
     setTopping("");
   };
 
-  return (
-    <div className="relative min-h-screen flex flex-col items-center justify-start text-white overflow-hidden px-6 pt-12 bg-gradient-to-b from-[#0B1D51] via-[#1a2a6c] to-black inset-0 ">
-       
-        <Stars /> 
+  const saveIceCream = () => {
+    if (scoops.length === 0) return;
 
-      <h1 className="text-5xl font-extrabold mb-30">🍦 Build Your Ice Cream</h1>
+    const text = `I created an ice cream with scoops: ${scoops.join(", ")}${topping ? ` topped with ${topping}` : ""} 🍦`;
+    const newEntry: DiaryEntry = {
+      text,
+      date: new Date().toISOString(),
+    };
+    setEntries([newEntry, ...entries]);
+    resetIceCream();
+    alert("Your ice cream has been saved to your diary! 📖✨");
+  };
+
+  return (
+    <div className="relative min-h-screen flex flex-col items-center justify-start text-white overflow-hidden px-6 pt-12  bg-gradient-to-b from-[#0B1D51] via-[#1a2a6c] to-black">
+
+      <h1 className="text-5xl font-extrabold mb-10">🍦 Build Your Ice Cream</h1>
+
+     
 
       {/* 🥄 Ice Cream Display */}
       <div className="flex flex-col items-center mb-6">
@@ -40,7 +66,7 @@ export default function IceCreamBuilder() {
           {scoops.map((flavor, i) => (
             <div
               key={i}
-              className={`w-16 h-8 rounded-full mb-[-8px] flex items-center justify-center text-xs font-bold`}
+              className="w-16 h-8 rounded-full mb-[-8px] flex items-center justify-center text-xs font-bold"
               style={{ background: getFlavorColor(flavor) }}
             >
               {flavor[0]}
@@ -84,15 +110,25 @@ export default function IceCreamBuilder() {
           ))}
         </div>
 
-        {/* Reset */}
-        <button
-          className="px-4 py-2 bg-red-500 rounded-full hover:scale-105 transition"
-          onClick={resetIceCream}
-        >
-          Reset
-        </button>
+        {/* Actions */}
+        <div className="flex gap-2">
+          <button
+            className="px-4 py-2 bg-red-500 rounded-full hover:scale-105 transition"
+            onClick={resetIceCream}
+          >
+            Reset
+          </button>
+
+          <button
+            className="px-4 py-2 bg-green-500 rounded-full hover:scale-105 transition"
+            onClick={saveIceCream}
+          >
+            Save to Diary 📖
+          </button>
+        </div>
       </div>
 
+      {/* 🔙 Back */}
       <Link
         href="/islands"
         className="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 px-6 py-3 rounded-full hover:scale-105 transition"

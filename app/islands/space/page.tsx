@@ -66,6 +66,18 @@ export default function SpaceIsland() {
           Cosmic Burst ✨
         </button>
 
+         <Link href="/islands/space-look"
+          className="mb-4 bg-blue-400/20 ms-4 px-6 py-2 rounded-full hover:bg-blue-400/40 transition"
+        >
+          Take a look ✨
+        </Link>
+
+         <Link href="/islands/space-list"
+          className="mb-4 bg-blue-400/20 ms-4 px-6 py-2 rounded-full hover:bg-blue-400/40 transition"
+        >
+          Cards ✨
+        </Link>
+
         <br />
 
         <Link
@@ -75,6 +87,7 @@ export default function SpaceIsland() {
           <FontAwesomeIcon icon={faCompass} />
           Back to Islands
         </Link>
+        
       </div>
 
       {/* 🌌 CSS */}

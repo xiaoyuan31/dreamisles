@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompass } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faCompass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Stars from "@/app/components/Stars";
 
 export default function MagicalForest() {
   const [fireflies, setFireflies] = useState(false);
@@ -16,7 +17,10 @@ export default function MagicalForest() {
     <div className="relative min-h-screen flex flex-col items-center justify-center text-white overflow-hidden px-6">
 
       {/* 🌿 Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-green-900 via-green-800 to-black"></div>
+     <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D51] via-[#1a2a6c] to-black"></div>
+     
+    {/* ✨ Stars Background */}
+    <Stars />
 
       {/* 🌫 Fog Layer */}
       <div className="fog"></div>
@@ -68,6 +72,14 @@ export default function MagicalForest() {
         >
           Release Fireflies ✨
         </button>
+
+        <Link
+          href="/islands/book-library"
+          className="inline-flex items-center ms-3 gap-2 bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-3 rounded-full hover:scale-105 transition"
+        >
+          <FontAwesomeIcon icon={faBook} />
+          Enter book Library
+        </Link>
 
         <br />
 

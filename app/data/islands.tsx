@@ -59,4 +59,15 @@ export const islands: Island[] = [
       { type: "effect", label: "Cosmic Dust" },
     ],
   },
+  {
+    id: "energy",
+    title: "Energy Island",
+    description: "A magical island where energy and lightning come alive.",
+    image: "/images/island-5.png",
+    href: "/islands/energy",
+    features: [
+      { type: "star", label: "Collect Energy Star" },
+      { type: "effect", label: "Lightning Flashes" },
+    ],
+  },
 ];
